@@ -14,3 +14,13 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.home{
+    background: color($colors, lblue);
+    color: color($colors, light);
+    margin-top: 30px;
+}
+
+.toolbar-title{
+    text-align: center;
+}

@@ -4,14 +4,23 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding class="home">
+  <ion-grid *ngIf="weather">
+    <ion-row>
+      <ion-col width-50 offset-25 text-center>
+        <h2 class="location">
+          {{ weather.name }}
+        </h2>
+        <div class="weather-icon">
+          <img src="http://openweathermap.org/img/w/{{ weather.weather[0].icon }}.png" alt="icon">
+        </div>
+        <h3>
+          <strong>{{ weather.main.temp }}</strong> <small>F</small> 
+        </h3>
+        <h4>
+          <strong>{{ weather.main.humidity }}</strong> <small>Humidity</small> 
+        </h4>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
