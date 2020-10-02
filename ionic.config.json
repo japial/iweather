@@ -1,0 +1,7 @@
+{
+  "name": "iweather",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "ionic-angular"
+}
