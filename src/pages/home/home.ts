@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { from } from 'rxjs/observable/from';
 import { WeatherProvider } from '../../providers/weather/weather';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -8,18 +10,32 @@ import { WeatherProvider } from '../../providers/weather/weather';
 })
 export class HomePage {
   weather: any;
-  city: string;
+  location: string;
 
-  constructor(public navCtrl: NavController, private weatherProvider: WeatherProvider) {
-
-  }
+  constructor(public navCtrl: NavController,
+     private weatherProvider: WeatherProvider,
+     private storage: Storage) {}
 
   ionViewWillEnter(){
-    this.city = 'Dhaka';
+    
+    this.storage.get('location').then((val) => {
 
-    this.weatherProvider.getWeather(this.city).subscribe( weather => {
-      this.weather = weather;
+      if(val){
+        this.location = val;
+      }else{
+        this.location = 'Dhaka,bd';
+      }
+
+      this.weatherProvider.getWeather(this.location).subscribe( weather => {
+        this.weather = weather;
+      });
     });
+    
+  }
+
+  farToCelcius(temperature: number){
+    let celcius = (temperature - 32)/ 1.8;
+    return celcius.toFixed(2);
   }
 
 }
